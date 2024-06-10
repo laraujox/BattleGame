@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: unit-test-check
+        name: unit-test-check
+        entry: make test-unit
+        language: system
+        always_run: true
+        stages: [commit]
