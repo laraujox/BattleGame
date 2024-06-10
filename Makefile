@@ -40,7 +40,7 @@ install:
 # Run the Flask application
 run:
 	docker-compose up db -d
-	#$(FLASK) run
+	$(FLASK) run
 
 # Execute database migrations
 db-upgrade:

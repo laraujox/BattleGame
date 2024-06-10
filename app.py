@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 from flask_migrate import Migrate
+from flask_cors import CORS
 
 from extensions import db
 from source.views.battle import BATTLE_BLUEPRINT
@@ -21,6 +22,8 @@ def create_app(db_url: str = None):
     app.register_blueprint(API_BLUEPRINT)
     app.register_blueprint(BATTLE_BLUEPRINT)
     app.register_blueprint(PLAYER_BLUEPRINT)
+
+    CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
     return app
 
 
