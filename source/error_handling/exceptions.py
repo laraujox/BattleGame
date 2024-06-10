@@ -1,4 +1,5 @@
 from http import HTTPStatus
+from typing import Union
 
 
 class MainException(Exception):
@@ -17,8 +18,8 @@ class MainException(Exception):
 
 
 class PlayerDoesNotExistException(MainException):
-    def __init__(self, player_id: int):
-        message = f"Player with id #{player_id} does not exist."
+    def __init__(self, player: Union[int, str]):
+        message = f"Player #{player} does not exist."
         status_code = HTTPStatus.NOT_FOUND.value
-        extra = {"player_id": player_id}
+        extra = {"player": player}
         super().__init__(message, status_code, extra)

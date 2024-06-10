@@ -19,7 +19,6 @@ help:
 	@echo "  make test-unit        - Run Unit tests"
 	@echo "  make db-upgrade       - Execute database migrations"
 	@echo "  make db-new-migration - Generate new migration from model change"
-	@echo "  make run-test-db      - Run local database for integration tests"
 	@echo "  make test-int         - Run Integration tests"
 	@echo "  make clean            - Clean up the project"
 	@echo "  make format           - Format all python files"
@@ -40,7 +39,7 @@ install:
 
 # Run the Flask application
 run:
-	docker-compose up db test_db -d
+	docker-compose up db -d
 	#$(FLASK) run
 
 # Execute database migrations
@@ -54,10 +53,6 @@ db-new-migration:
 # Run Unit Tests
 test-unit:
 	pytest tests/unit -vv --disable-warnings
-
-# Run Integration Tests Mock Database
-run-test-db:
-	docker compose up test_db -d
 
 # Run Integration Tests
 test-int:

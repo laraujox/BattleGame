@@ -14,20 +14,6 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  test_db:
-    image: postgres:13
-    container_name: test_postgres_db
-    restart: always
-    ports:
-      - "5433:5432"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=integration_test_database
-    volumes:
-      - test_pgdata:/var/lib/postgresql/data
-
 
 volumes:
   pgdata:
-  test_pgdata:

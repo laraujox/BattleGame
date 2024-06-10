@@ -13,9 +13,27 @@ class PlayerRepository(AbstractRepository):
         self.session.add(player)
         self.session.commit()
 
-    def get(self, player_id: int) -> Player:
+    @staticmethod
+    def get_by_name(player_name: str) -> Player:
+        logger.info(f"Getting Player with name #{player_name}.")
+        player = Player.query.filter_by(name=player_name).first()
+        if player:
+            return player
+        # raise PlayerDoesNotExistException(player_name)
+
+    @staticmethod
+    def get(player_id: int) -> Player:
         logger.info(f"Getting Player with Id #{player_id}.")
         player = Player.query.get(player_id)
         if player:
             return player
         raise PlayerDoesNotExistException(player_id)
+
+    def update_gold(self, player: Player, gold: int, deduce: bool = False) -> None:
+        logger.info(f"Updating gold for Player with Id #{player.id}.")
+        if deduce:
+            player.gold -= gold
+        else:
+            player.gold += gold
+
+        self.session.commit()

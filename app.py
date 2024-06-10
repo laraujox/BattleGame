@@ -4,8 +4,9 @@ from flask import Flask
 from flask_migrate import Migrate
 
 from extensions import db
-from source.views.player import PLAYER_BLUEPRINT
+from source.views.battle import BATTLE_BLUEPRINT
 from source.views.health import API_BLUEPRINT
+from source.views.player import PLAYER_BLUEPRINT
 
 
 def create_app(db_url: str = None):
@@ -18,6 +19,7 @@ def create_app(db_url: str = None):
     migrate.init_app(app, db)
 
     app.register_blueprint(API_BLUEPRINT)
+    app.register_blueprint(BATTLE_BLUEPRINT)
     app.register_blueprint(PLAYER_BLUEPRINT)
     return app
 

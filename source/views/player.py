@@ -1,7 +1,7 @@
 import logging
 from http import HTTPStatus
 
-from flask import Blueprint, jsonify, request
+from flask import jsonify, request, Blueprint
 from marshmallow import ValidationError
 
 from source.error_handling.exceptions import (
@@ -12,10 +12,11 @@ from source.models import Player
 from source.repositories.player import PlayerRepository
 
 logger = logging.getLogger("views.player")
-PLAYER_BLUEPRINT = Blueprint("player", __name__, url_prefix="/player")
 
 player_repository = PlayerRepository()
 player_creation_schema = PlayerCreationSchema()
+
+PLAYER_BLUEPRINT = Blueprint("player", __name__, url_prefix="/player")
 
 
 @PLAYER_BLUEPRINT.route("/", methods=["POST"])
@@ -26,7 +27,11 @@ def create_player():
 
     Request body:
     {
-        ...
+        "name": "HotBarbecu3",
+        "gold": 100,
+        "attack_value": 50,
+        "hit_points": 200,
+        "luck_value": 7
     }
 
     Response:

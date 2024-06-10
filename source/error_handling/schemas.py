@@ -9,3 +9,10 @@ class PlayerCreationSchema(Schema):
     attack_value = fields.Float(required=True, validate=lambda x: x > 0)
     hit_points = fields.Float(required=True, validate=lambda x: x > 0)
     luck_value = fields.Float(required=True)
+
+
+class BattleCreationSchema(Schema):
+    """Schema for Battle creation request body validation"""
+
+    attacker_name = fields.Str(required=True)
+    defender_name = fields.Str(required=True)
